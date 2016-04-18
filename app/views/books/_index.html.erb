@@ -1,0 +1,14 @@
+  <% @books.each do |book| %>
+      <tr>
+        <td><%= book.isbn %></td>
+        <td><%= book.title %></td>
+        <td align="right"><%= book.quantity %></td>          
+        <td align="right"><%= number_to_currency(book.unit_price, unit:'円',precision:0,format:'%n%u') %></td>        
+        <td align="right"><%= number_to_currency(book.price, unit:'円',precision:0,format:'%n%u') %></td>
+        <td><%= book.publish %></td>
+        <td><%= book.pubulished %></td>
+        <td><%= book.cd %></td>
+        <td><%= link_to 'Edit', edit_book_path(book), remote: true, :class => "btn btn-primary btn-xs" %>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger  btn-xs" %></td>
+      </tr>
+    <% end %>

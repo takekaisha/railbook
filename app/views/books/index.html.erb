@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Books</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">検索</div>
+  </div>      
+  <div class="panel-body">
+    <%= search_form_for @q do |f| %>
+      <div class="row">
+        <div class="col-sm-6">            
+          <div class="form-group">
+            <%= f.label :title_eq %>
+            <%= f.text_field :title_eq,class: "form-control",placeholder: "完全一致" %>                
+          </div>
+        </div>
+        <div class="col-sm-6">            
+          <div class="form-group">
+            <%= f.label :title_cont %>
+            <%= f.text_field :title_cont,class: "form-control",placeholder: "部分一致" %>                
+          </div>
+        </div>              
+       
+          <%= f.submit "検索",class: "btn btn-primary hoge" %>
+          <%= link_to 'クリア', url_for,class: "btn btn-default" %>
+          <%= link_to 'New Book', new_book_path, remote: true,:class => "btn btn-primary" %>          
+        <% end %>
+      </div>
+
+
+  </div>
+</div>    
+
+
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Isbn</th>
+      <th>Title</th>
+      <th>quantity</th>
+      <th>unit_price</th>      
+      <th>Price</th>
+      <th>Publish</th>
+      <th>Pubulished</th>
+      <th>Cd</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody class="book-index">
+    
+    <%= render 'index' %>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-lg-2">
+    <div class="well well-sm">
+      <h5 align="right" class="total">合計金額：<%= number_to_currency(@total_price, unit:'円',precision:0,format:'%n%u') %> </h5>
+    </div>  
+  </div>
+</div>
+
+<br>
+
+
+
+<div id="book-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
